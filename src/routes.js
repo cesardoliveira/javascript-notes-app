@@ -5,16 +5,17 @@ import RegisterScreen from './screens/auth/register';
 import LoginScreen from './screens/auth/login';
 import UsersScreen from './screens/users/edit';
 import NotesScreen from './screens/notes/index';
-
+import PrivateRoute from './components/auth/private_route';
+import PublicRoute from './components/auth/public_route';
 
 const Routes = () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/register" component={RegisterScreen} />
-            <Route exact path="/login" component={LoginScreen} />
-            <Route exact path="/users/edit" component={UsersScreen} />
-            <Route exact path="/notes" component={NotesScreen} />
+            <PublicRoute exact path="/register" component={RegisterScreen} />
+            <PublicRoute exact path="/login" component={LoginScreen} />
+            <PrivateRoute exact path="/users/edit" component={UsersScreen} />
+            <PrivateRoute exact path="/notes" component={NotesScreen} />
         </Switch>
     </BrowserRouter>
 );
