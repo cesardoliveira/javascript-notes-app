@@ -29,6 +29,15 @@ function HeaderLogged(props) {
                         </Link>
                     </Column>
                 </Column.Group>
+                <Navbar.Burger
+                    className="navbar-burguer burguer"
+                    aria-label="menu"
+                    aria-expanded="false"
+                    data-target="navbar-menu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </Navbar.Burger>
             </Navbar.Brand>
 
             <Navbar.Menu>
@@ -37,7 +46,7 @@ function HeaderLogged(props) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button" color="white" outlined>
-                                    <span>User ▼</span>
+                                    <span>Kevin Parker ▼</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>
