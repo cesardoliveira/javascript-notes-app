@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Navbar, Container, Column, Button, Dropdown } from 'rbx';
-import logoImage from '../../assets/images/logo-white.png'
-import '../../styles/header.scss';
+import { Navbar, Column, Button, Dropdown } from 'rbx';
+import logoImage from '../../assets/images/logo-white.png';
+import "../../styles/header.scss";
 import UsersService from '../../services/users';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,9 +15,8 @@ function HeaderLogged(props) {
         setRedirectToHome(true);
     }
 
-    if (redirectToHome) {
+    if (redirectToHome == true)
         return <Redirect to={{ pathname: "/" }} />
-    }
 
     return (
         <Navbar color="custom-purple" className="navbar-logged">
@@ -25,12 +24,12 @@ function HeaderLogged(props) {
                 <Column.Group>
                     <Column size="11" offset="1">
                         <Link to="/notes">
-                            <img src={logoImage} alt="logo" />
+                            <img src={logoImage} />
                         </Link>
                     </Column>
                 </Column.Group>
                 <Navbar.Burger
-                    className="navbar-burguer burguer"
+                    className="navbar-burger burger"
                     aria-label="menu"
                     aria-expanded="false"
                     data-target="navbar-menu">
@@ -57,13 +56,13 @@ function HeaderLogged(props) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button" color="white" outlined>
-                                    <span>Kevin Parker ▼</span>
+                                    <span>Leonardo ▼</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>
                                 <Dropdown.Content>
                                     <Dropdown.Item as="div">
-                                        <Link to="/users/edit"> User Edit</Link>
+                                        <Link to="/users/edit">User Edit</Link>
                                     </Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item as="div">
@@ -80,4 +79,3 @@ function HeaderLogged(props) {
 }
 
 export default HeaderLogged;
-
