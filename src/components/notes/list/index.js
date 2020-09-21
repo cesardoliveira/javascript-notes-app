@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { Button, Column, Tag, Title, List } from 'rbx';
 import Moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function ListNotes(props) {
     return (
@@ -9,7 +11,12 @@ function ListNotes(props) {
                 <Column size={6} offset={1}>
                     <Title size={6}>
                         {props.notes.length} Notes
-          </Title>
+                    </Title>
+                </Column>
+                <Column size={2}>
+                    <Button state="active" color="custom-purple" outlined size="small" onClick={() => props.createNote()}>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </Button>
                 </Column>
             </Column.Group>
             <List className="notes-list">
