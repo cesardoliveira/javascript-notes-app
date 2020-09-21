@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const publicRoute = ({ component: Component, ...rest }) => (
+const PublicRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
         localStorage.getItem('user')
             ? <Redirect to={{ pathname: '/notes' }} /> 
@@ -9,4 +9,4 @@ const publicRoute = ({ component: Component, ...rest }) => (
     )} />
 )
 
-export default publicRoute;
+export default PublicRoute;

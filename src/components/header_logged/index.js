@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Column, Button, Dropdown } from 'rbx';
 import logoImage from '../../assets/images/logo-white.png';
-import "../../styles/header.scss";
+import '../../styles/header.scss';
 import UsersService from '../../services/users';
 import { Redirect, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -56,7 +56,7 @@ function HeaderLogged(props) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button" color="white" outlined>
-                                    <span>Leonardo ▼</span>
+                                    <span>Kevin Parker ▼</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>

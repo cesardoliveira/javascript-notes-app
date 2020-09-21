@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Button, Column, Tag, Title, List } from "rbx";
+import { Button, Column, Tag, Title, List } from 'rbx';
 import Moment from 'moment';
 
 function ListNotes(props) {

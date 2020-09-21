@@ -16,7 +16,6 @@ function LoginForm() {
             const user = await UsersService.login({ email: email, password: password });
             setRedirectToNotes(true);
         } catch (error) {
-            console.log(error)
             setError(true);
         }
     }

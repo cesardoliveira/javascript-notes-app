@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const privateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
         localStorage.getItem('user')
             ? <Component {...props} />
@@ -9,4 +9,4 @@ const privateRoute = ({ component: Component, ...rest }) => (
     )} />
 )
 
-export default privateRoute;
+export default PrivateRoute;
