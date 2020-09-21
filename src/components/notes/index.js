@@ -15,6 +15,8 @@ function Notes(props) {
         if (response.data.length >= 1) {
             setNotes(response.data.reverse());
             setCurrentNote(response.data[0]);
+        } else {
+            setNotes([]);
         }
     }
 
@@ -22,6 +24,15 @@ function Notes(props) {
         await NotesService.create();
         fetchNotes();
     }
+
+    const updateNote = async(oldNote, params) => {
+        const response = await NotesService.update(oldNote._id, params);
+        const index = notes.indexOf(oldNote);
+        const newNotes = notes;
+        newNotes[index] = response.data;
+        setNotes(newNotes);
+        setCurrentNote(response.data);
+    } 
 
     const deleteNote = async(note) => {
         await NotesService.delete(note._id);
@@ -65,7 +76,10 @@ function Notes(props) {
                     />
                 </Menu>
                 <Column size={12} className="notes-editor" id="notes-editor">
-                    <Editor note={current_note}/>
+                    <Editor 
+                        note={current_note}
+                        updateNote={updateNote}
+                    />
                 </Column>
             </Column.Group>
         </Fragment>
