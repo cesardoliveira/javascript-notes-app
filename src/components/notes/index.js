@@ -4,6 +4,7 @@ import '../../styles/notes.scss';
 import { push as Menu } from 'react-burger-menu';
 import List from '../notes/list';
 import Editor from './editor';
+import Search from './search';
 import NotesService from '../../services/notes';
 
 function Notes(props) {
@@ -25,16 +26,21 @@ function Notes(props) {
         fetchNotes();
     }
 
-    const updateNote = async(oldNote, params) => {
+    const updateNote = async (oldNote, params) => {
         const response = await NotesService.update(oldNote._id, params);
         const index = notes.indexOf(oldNote);
         const newNotes = notes;
         newNotes[index] = response.data;
         setNotes(newNotes);
         setCurrentNote(response.data);
-    } 
+    }
 
-    const deleteNote = async(note) => {
+    const searchNotes = async (query) => {
+        const response = await NotesService.search(query);
+        setNotes(response.data);
+    }
+
+    const deleteNote = async (note) => {
         await NotesService.delete(note._id);
         fetchNotes();
     }
@@ -64,19 +70,19 @@ function Notes(props) {
                 >
                     <Column.Group>
                         <Column size={10} offset={1}>
-                            Search...
-            </Column>
+                            <Search searchNotes={searchNotes} fetchNotes={fetchNotes} />
+                        </Column>
                     </Column.Group>
                     <List
                         notes={notes}
                         selectNote={selectNote}
                         createNote={createNote}
-                        deleteNote={deleteNote}                        
+                        deleteNote={deleteNote}
                         current_note={current_note}
                     />
                 </Menu>
                 <Column size={12} className="notes-editor" id="notes-editor">
-                    <Editor 
+                    <Editor
                         note={current_note}
                         updateNote={updateNote}
                     />
