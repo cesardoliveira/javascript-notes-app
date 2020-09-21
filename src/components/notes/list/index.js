@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Button, Column, Tag, Title, List } from 'rbx';
 import Moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function ListNotes(props) {
     return (
@@ -28,12 +28,14 @@ function ListNotes(props) {
                         <Title size={6} subtitle spaced={false}>
                             {item.body.replace(/(<([^>]+)>)/ig, "").substring(0, 30)}
                         </Title>
-
                         <Column.Group breakpoint="mobile">
                             <Column size={10}>
                                 <Tag color="dark">
                                     {Moment(item.created_at).format('DD/MM')}
                                 </Tag>
+                            </Column>
+                            <Column size={2}>
+                                <FontAwesomeIcon icon={faTrash} color="grey" onClick={() => props.deleteNote(item)} />
                             </Column>
                         </Column.Group>
                     </List.Item>

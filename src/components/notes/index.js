@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Column, Button } from 'rbx';
 import '../../styles/notes.scss';
-import { push as Menu } from 'react-burger-menu'
+import { push as Menu } from 'react-burger-menu';
 import List from '../notes/list';
 import NotesService from '../../services/notes';
 
@@ -19,6 +19,11 @@ function Notes(props) {
 
     const createNote = async () => {
         await NotesService.create();
+        fetchNotes();
+    }
+
+    const deleteNote = async(note) => {
+        await NotesService.delete(note._id);
         fetchNotes();
     }
 
@@ -54,6 +59,7 @@ function Notes(props) {
                         notes={notes}
                         selectNote={selectNote}
                         createNote={createNote}
+                        deleteNote={deleteNote}                        
                         current_note={current_note}
                     />
                 </Menu>
