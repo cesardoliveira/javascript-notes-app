@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import { Column, Scetion, Title, Container, Card, Button, Section } from 'rbx';
 import '../../../styles/users.scss';
 import HeaderLogged from '../../../components/header_logged';
+import UserEditForm from '../../../components/users/user_edit_form';
+import UserEditPasswordForm from '../../../components/users/user_edit_password_form';
+import UserDelete from '../../../components/users/user_delete';
 
 const UsersEditScreen = () => (
     <Fragment>
@@ -15,7 +18,7 @@ const UsersEditScreen = () => (
                         </Title>
                         <Card>
                             <Card.Content>
-                                Users Edit form...
+                                <UserEditForm />
                             </Card.Content>
                         </Card>
                     </Column>
@@ -27,14 +30,14 @@ const UsersEditScreen = () => (
                         </Title>
                         <Card>
                             <Card.Content>
-                                Users Edit Password form...
+                                <UserEditPasswordForm />
                             </Card.Content>
                         </Card>
                     </Column>
                 </Column.Group>
                 <Column.Group centered>
                     <Column size={4} className="has-text-right">
-                        Users Delete Button
+                        <UserDelete/>
                     </Column>
                 </Column.Group>
             </Container>
