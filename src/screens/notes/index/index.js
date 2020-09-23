@@ -6,8 +6,8 @@ const NotesScreen = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Fragment>
-            <HeaderLogged setIsOpen={setIsOpen} />
-            <Notes setIsOpen={setIsOpen} isOpen={isOpen} />
+            <HeaderLogged isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Notes isOpen={isOpen} setIsOpen={setIsOpen} />
         </Fragment>
     );
 }

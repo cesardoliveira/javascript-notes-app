@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Input, Column } from 'rbx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Search(props) {
     const [query, setQuery] = useState('');
@@ -27,6 +27,13 @@ function Search(props) {
                 }}>
                     <FontAwesomeIcon
                         icon={faTimes} color="grey" className="is-pulled-left"
+                    />
+                </a>
+            </Column>
+            <Column mobile={2} size={1}>
+                <a onClick={() => { props.searchNotes(query) }}>
+                    <FontAwesomeIcon
+                        icon={faSearch} color="grey" className="is-pulled-left"
                     />
                 </a>
             </Column>

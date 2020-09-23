@@ -11,6 +11,10 @@ function HeaderLogged(props) {
     const [redirectToHome, setRedirectToHome] = useState(false);
     const [user, setUser] = useState(localStorage.getItem('user'));
 
+    const handleClick = () => {
+        (props.isOpen) ? props.setIsOpen(false) : props.setIsOpen(true);
+    }
+
     const logOut = async () => {
         await UsersService.logout();
         setRedirectToHome(true);
@@ -47,7 +51,7 @@ function HeaderLogged(props) {
                             className="open-button"
                             color="white"
                             outlined
-                            onClick={() => props.setIsOpen(true)}>
+                            onClick={() => handleClick()}>
                             <FontAwesomeIcon icon={faList} />
                         </Button>
                     </Navbar.Item>
