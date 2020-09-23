@@ -27,9 +27,7 @@ const RegisterScreen = () => (
                                                 </Title>
                                         </Column>
                                     </Column.Group>
-                                    <RegisterForm>
-                                        
-                                    </RegisterForm>
+                                    <RegisterForm/>
                                 </Section>
                             </Card.Content>
                         </Card>

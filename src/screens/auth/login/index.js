@@ -27,9 +27,7 @@ const LoginScreen = () => (
                                                 </Title>
                                         </Column>
                                     </Column.Group>
-                                    <LoginForm>
-
-                                    </LoginForm>
+                                    <LoginForm/>
                                 </Section>
                             </Card.Content>
                         </Card>

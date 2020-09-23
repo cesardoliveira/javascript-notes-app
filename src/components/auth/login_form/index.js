@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Button, Field, Control, Label, Input, Column, Help } from 'rbx';
 import { Redirect } from 'react-router-dom';
 import UsersService from '../../../services/users';
+import Notification from '../../notification';
 
 function LoginForm() {
     const [email, setEmail] = useState("");
@@ -9,13 +10,15 @@ function LoginForm() {
     const [redirectToRegister, setRedirectToRegister] = useState(false);
     const [redirectToNotes, setRedirectToNotes] = useState(false);
     const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const HandleSubmit = async (evt) => {
         evt.preventDefault();
         try {
-            const user = await UsersService.login({ email: email, password: password });
+            await UsersService.login({ email: email, password: password });
             setRedirectToNotes(true);
         } catch (error) {
+            (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Connection to endpoint API failed');
             setError(true);
         }
     }
@@ -56,7 +59,7 @@ function LoginForm() {
                                 </Column.Group>
                             </Control>
                         </Field>
-                        {error && <Help color="danger">E-mail or Password invalid</Help>}
+                        {error && <Notification color="danger" message={errorMsg}/>}
                     </Column>
                 </form>
             </Column.Group>

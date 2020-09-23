@@ -1,11 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Button, Field, Control, Input, Column, Title, Help, Label } from 'rbx';
 import UserService from '../../../services/users';
+import Notification from '../../notification';
 
 const UserEditForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState(null);
+    const [notificationMsg, setNotificationMsg] = useState('');
 
     const initializerUser = async () => {
         const user = await JSON.parse(localStorage.getItem('user'));
@@ -23,8 +25,10 @@ const UserEditForm = () => {
         try {
             await UserService.update({ email: email, name: name })
             setStatus('success');
+            setNotificationMsg('User updated with sucess. ');
         } catch (error) {
             setStatus('error');
+            (error.response) ? setNotificationMsg(error.response.data['error']) : setNotificationMsg('Connection to endpoint API failed');
         }
     }
 
@@ -59,9 +63,9 @@ const UserEditForm = () => {
                     </Control>
                 </Field>
                 {status == 'error' &&
-                    <Help color="danger"> Failed to update user</Help>}
+                    <Notification color="danger" message={notificationMsg} />}
                 {status == 'success' &&
-                    <Help color="success"> User updated with sucess</Help>}
+                    <Notification color="success" message={notificationMsg} />}
             </form>
         </Fragment>
     );

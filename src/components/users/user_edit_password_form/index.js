@@ -1,11 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Field, Control, Input, Column, Help, Label } from 'rbx';
 import UserService from '../../../services/users';
+import Notification from '../../notification';
 
 const UserEditPasswordForm = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [status, setStatus] = useState(null);
+    const [notificationMsg, setNotificationMsg] = useState('');
 
     const HandleSubmit = async (evt) => {
         evt.preventDefault();
@@ -14,11 +16,14 @@ const UserEditPasswordForm = () => {
             try {
                 await UserService.updatePassword({ password: password });
                 setStatus("success");
-            } catch (err) {
-                setStatus("error");
+                setNotificationMsg('Password updated with success. ');
+            } catch (error) {
+                setStatus("error_update");
+                (error.response) ? setNotificationMsg(error.response.data['error']) : setNotificationMsg('Connection to endpoint API failed');
             }
         } else {
             setStatus("error_confirmation_password");
+            setNotificationMsg('Passwords does not match. ');
         }
     }
 
@@ -54,13 +59,13 @@ const UserEditPasswordForm = () => {
                     </Control>
                 </Field>
                 {status == "error_update" &&
-                    <Help color="danger">Failed to update password</Help>
+                    <Notification color="danger" message={notificationMsg}/>
                 }
                 {status == "error_confirmation_password" &&
-                    <Help color="danger">Passwords does not match</Help>
+                    <Notification color="danger" message={notificationMsg}/>
                 }
                 {status == "success" &&
-                    <Help color="success">Password updated with success</Help>
+                    <Notification color="success" message={notificationMsg}/>
                 }
             </form>
         </Fragment>
