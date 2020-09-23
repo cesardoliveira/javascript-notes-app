@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { Navbar, Column, Button, Dropdown } from 'rbx';
-import logoImage from '../../assets/images/logo-white.png';
-import '../../styles/header.scss';
-import UsersService from '../../services/users';
+import {Navbar, Column, Dropdown, Button} from 'rbx';
+import logoImage from '../../../assets/images/logo-white.png';
+import UsersService from '../../../services/users';
 import { Redirect, Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList } from '@fortawesome/free-solid-svg-icons';
+import '../../../styles/header.scss';
 
-function HeaderLogged(props) {
-    const [redirectToHome, setRedirectToHome] = useState(false);
+const HeaderUserEdit = () => {
     const [user, setUser] = useState(localStorage.getItem('user'));
+    const [redirectToHome, setRedirectToHome] = useState(false);
 
     const logOut = async () => {
         await UsersService.logout();
@@ -25,7 +23,7 @@ function HeaderLogged(props) {
                 <Column.Group>
                     <Column size="11" offset="1">
                         <Link to="/notes">
-                            <img src={logoImage} />
+                            <img src={logoImage} alt="logo" />
                         </Link>
                     </Column>
                 </Column.Group>
@@ -39,19 +37,7 @@ function HeaderLogged(props) {
                     <span aria-hidden="true"></span>
                 </Navbar.Burger>
             </Navbar.Brand>
-
             <Navbar.Menu>
-                <Navbar.Segment as="div" className="navbar-item navbar-start" align="start">
-                    <Navbar.Item as="div">
-                        <Button
-                            className="open-button"
-                            color="white"
-                            outlined
-                            onClick={() => props.setIsOpen(true)}>
-                            <FontAwesomeIcon icon={faList} />
-                        </Button>
-                    </Navbar.Item>
-                </Navbar.Segment>
                 <Navbar.Segment as="div" className="navbar-item navbar-end" align="right">
                     <Navbar.Item as="div">
                         <Dropdown>
@@ -76,7 +62,8 @@ function HeaderLogged(props) {
                 </Navbar.Segment>
             </Navbar.Menu>
         </Navbar>
-    )
+    );
+
 }
 
-export default HeaderLogged;
+export default HeaderUserEdit;

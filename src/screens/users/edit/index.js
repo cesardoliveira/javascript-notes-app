@@ -1,17 +1,15 @@
-import React, { Fragment, useState } from 'react';
-import { Column, Scetion, Title, Container, Card, Button, Section } from 'rbx';
-import '../../../styles/users.scss';
-import HeaderLogged from '../../../components/header_logged';
+import React, { Fragment } from 'react';
+import { Section, Column, Title, Container, Card } from 'rbx';
 import UserEditForm from '../../../components/users/user_edit_form';
 import UserEditPasswordForm from '../../../components/users/user_edit_password_form';
 import UserDelete from '../../../components/users/user_delete';
+import HeaderUserEdit from '../../../components/header/header_user_edit';
+import '../../../styles/users.scss';
 
 const UsersEditScreen = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
     return (
         <Fragment>
-            <HeaderLogged setIsOpen={setIsOpen} />
+            <HeaderUserEdit/>
             <Section size="medium" className="users">
                 <Container>
                     <Column.Group centered className="users-edit">

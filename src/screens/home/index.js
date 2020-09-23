@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import presentationImage from '../../assets/images/presentation.png';
-import Header from '../../components/header';
+import Header from '../../components/header/header_home';
 import { Column, Section, Title, Container } from 'rbx';
 import '../../styles/home.scss';
 import { Link } from 'react-router-dom';
