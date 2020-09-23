@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from 'react';
-import { Input, Column } from 'rbx';
+import React, { useState } from 'react';
+import { Input, Column, Button } from 'rbx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-function Search(props) {
+const Search = (props) => {
     const [query, setQuery] = useState('');
 
-    const HandleKeyDown = (evt) => {
+    const handleKeyDown = (evt) => {
         if (evt.key === 'Enter') {
             props.searchNotes(query);
         }
@@ -14,28 +14,30 @@ function Search(props) {
 
     return (
         <Column.Group>
-            <Column size={9} offset={1}>
+            <Column size={7} offset={1}>
                 <Input type="text" name={query} value={query} placeholder="Search note..."
                     onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={HandleKeyDown}
+                    onKeyDown={handleKeyDown}
                 />
             </Column>
-            <Column mobile={2} size={1}>
-                <a onClick={() => {
+            <Column mobile={1} size={1}> 
+                <Button size="small" onClick={() => {
                     props.fetchNotes()
                     setQuery('')
                 }}>
                     <FontAwesomeIcon
                         icon={faTimes} color="grey" className="is-pulled-left"
                     />
-                </a>
+                </Button>
             </Column>
-            <Column mobile={2} size={1}>
-                <a onClick={() => { props.searchNotes(query) }}>
+            <Column mobile={1} size={1}>
+            </Column>
+            <Column mobile={1} size={1}>
+                <Button size="small" onClick={() => { props.searchNotes(query) }}>
                     <FontAwesomeIcon
                         icon={faSearch} color="grey" className="is-pulled-left"
                     />
-                </a>
+                </Button>
             </Column>
         </Column.Group>
     );

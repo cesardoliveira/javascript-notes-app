@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Button, Field, Control, Input, Column, Title, Help, Label } from 'rbx';
+import { Button, Field, Control, Input, Column, Label } from 'rbx';
 import UserService from '../../../services/users';
 import Notification from '../../notification';
 
@@ -19,22 +19,22 @@ const UserEditForm = () => {
         initializerUser();
     }, []);
 
-    const HandleSubmit = async (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
 
         try {
             await UserService.update({ email: email, name: name })
             setStatus('success');
-            setNotificationMsg('User updated with sucess. ');
+            setNotificationMsg('User updated with sucess.');
         } catch (error) {
             setStatus('error');
-            (error.response) ? setNotificationMsg(error.response.data['error']) : setNotificationMsg('Connection to endpoint API failed');
+            (error.response) ? setNotificationMsg(error.response.data['error']) : setNotificationMsg('Connection to endpoint API failed.');
         }
     }
 
     return (
         <Fragment>
-            <form onSubmit={HandleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <Field>
                     <Control>
                         <Label className="has-grey-text">Name</Label>
@@ -62,9 +62,9 @@ const UserEditForm = () => {
                         </Column.Group>
                     </Control>
                 </Field>
-                {status == 'error' &&
+                {status === 'error' &&
                     <Notification color="danger" message={notificationMsg} />}
-                {status == 'success' &&
+                {status === 'success' &&
                     <Notification color="success" message={notificationMsg} />}
             </form>
         </Fragment>

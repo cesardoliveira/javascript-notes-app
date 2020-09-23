@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Button, Field, Control, Label, Input, Column, Help } from 'rbx';
+import { Button, Field, Control, Label, Input, Column } from 'rbx';
 import { Redirect } from 'react-router-dom';
 import UsersService from '../../../services/users';
 import Notification from '../../notification';
 
-function LoginForm() {
+const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirectToRegister, setRedirectToRegister] = useState(false);
@@ -12,13 +12,13 @@ function LoginForm() {
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const HandleSubmit = async (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
         try {
             await UsersService.login({ email: email, password: password });
             setRedirectToNotes(true);
         } catch (error) {
-            (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Connection to endpoint API failed');
+            (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Connection to endpoint API failed.');
             setError(true);
         }
     }
@@ -32,7 +32,7 @@ function LoginForm() {
     return (
         <Fragment>
             <Column.Group>
-                <form onSubmit={HandleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <Column size={12}>
                         <Field>
                             <Label size="small">Email: </Label>
@@ -50,8 +50,10 @@ function LoginForm() {
                             <Control>
                                 <Column.Group breakpoint="mobile">
                                     <Column>
-                                        <a className="button is white has-text-custom-purple"
-                                            onClick={e => setRedirectToRegister(true)}>Register or</a>
+                                        <Button 
+                                            className="button is white has-text-custom-purple"
+                                            onClick={e => setRedirectToRegister(true)}> Register or
+                                        </Button>
                                     </Column>
                                     <Column>
                                         <Button color="custom-purple" outlined>Login</Button>
@@ -59,7 +61,7 @@ function LoginForm() {
                                 </Column.Group>
                             </Control>
                         </Field>
-                        {error && <Notification color="danger" message={errorMsg}/>}
+                        {error && <Notification color="danger" message={errorMsg} />}
                     </Column>
                 </form>
             </Column.Group>

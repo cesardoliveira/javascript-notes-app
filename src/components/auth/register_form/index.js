@@ -1,24 +1,24 @@
 import React, { Fragment, useState } from 'react';
-import { Button, Field, Control, Label, Input, Column, Help } from 'rbx';
+import { Button, Field, Control, Label, Input, Column } from 'rbx';
 import { Redirect } from 'react-router-dom';
 import UsersService from '../../../services/users';
 import Notification from '../../notification';
 
-function RegisterForm() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const RegisterForm = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [redirectToLogin, setRedirectToLogin] = useState(false);
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const HandleSubmit = async (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
         try {
-            const user = await UsersService.register({ name: name, email: email, password: password });
+            await UsersService.register({ name: name, email: email, password: password });
             setRedirectToLogin(true);
         } catch (error) {
-            (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Connection to endpoint API failed');
+            (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Connection to endpoint API failed.');
             setError(true);
         }
     }
@@ -30,7 +30,7 @@ function RegisterForm() {
     return (
         <Fragment>
             <Column.Group>
-                <form onSubmit={HandleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <Column size={12}>
                         <Field>
                             <Label size="small">Name: </Label>
@@ -54,8 +54,10 @@ function RegisterForm() {
                             <Control>
                                 <Column.Group breakpoint="mobile">
                                     <Column>
-                                        <a className="button is white has-text-custom-purple"
-                                            onClick={e => setRedirectToLogin(true)}>Login or</a>
+                                        <Button 
+                                            className="button is white has-text-custom-purple"
+                                            onClick={e => setRedirectToLogin(true)}>Login or
+                                        </Button>
                                     </Column>
                                     <Column>
                                         <Button color="custom-purple" outlined>Register</Button>

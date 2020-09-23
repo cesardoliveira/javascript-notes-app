@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import {Navbar, Column, Dropdown, Button} from 'rbx';
-import logoImage from '../../../assets/images/logo-white.png';
+import { Navbar, Column, Dropdown, Button } from 'rbx';
 import UsersService from '../../../services/users';
 import { Redirect, Link } from "react-router-dom";
+import logoImage from '../../../assets/images/logo-white.png';
 import '../../../styles/header.scss';
 
 const HeaderUserEdit = () => {
-    const [user, setUser] = useState(localStorage.getItem('user'));
     const [redirectToHome, setRedirectToHome] = useState(false);
 
     const logOut = async () => {
@@ -14,7 +13,7 @@ const HeaderUserEdit = () => {
         setRedirectToHome(true);
     }
 
-    if (redirectToHome == true)
+    if (redirectToHome === true)
         return <Redirect to={{ pathname: "/" }} />
 
     return (
@@ -43,7 +42,7 @@ const HeaderUserEdit = () => {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button" color="white" outlined>
-                                    <span>{JSON.parse(user)['name']}</span>
+                                    <span>{JSON.parse(localStorage.getItem('user'))['name']}</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>
@@ -53,7 +52,9 @@ const HeaderUserEdit = () => {
                                     </Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item as="div">
-                                        <a onClick={e => logOut()}>LogOut</a>
+                                        <Button onClick={e => logOut()}>
+                                            LogOut
+                                        </Button>
                                     </Dropdown.Item>
                                 </Dropdown.Content>
                             </Dropdown.Menu>

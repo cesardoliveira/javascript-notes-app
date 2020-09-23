@@ -1,12 +1,10 @@
-import { Content } from 'rbx';
 import React, { Fragment, useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
-
 import 'react-quill/dist/quill.snow.css';
 
-function Editor(props) {
+const Editor = (props) => {
     const [currentContent, setCurrentContent] = useState('');
-    const [timer, setTimer] = useState(null)
+    const [timer, setTimer] = useState(null);
 
     useEffect(() => {
         setCurrentContent(props.note.body);
@@ -17,11 +15,11 @@ function Editor(props) {
         props.updateNote(props.note, { 'title': title, 'body': content });
     }
 
-    const HandleChange = (content, delta, source) => {
+    const handleChange = (content, delta, source) => {
         clearTimeout(timer);
-        if (source == 'user') {
+        if (source === 'user') {
             setCurrentContent(content);
-            setTimer(setTimeout(() => updateNote(content), 2000))
+            setTimer(setTimeout(() => updateNote(content), 2000));
         }
     }
 
@@ -49,7 +47,7 @@ function Editor(props) {
 
     return (
         <Fragment>
-            <ReactQuill value={currentContent} modules={toolbarOptions} onChange={HandleChange} />
+            <ReactQuill value={currentContent} modules={toolbarOptions} onChange={handleChange} />
         </Fragment>
     );
 }

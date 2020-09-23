@@ -7,7 +7,7 @@ const UserDelete = () => {
     const [redirectToHome, setRedirectToHome] = useState(false);
 
     const deleteUser = async () => {
-        if(window.confirm('Are you sure you wish to delete this account?')) {
+        if(window.confirm('Are you sure to delete this account?')) {
             await UsersService.delete();
             setRedirectToHome(true);
         }

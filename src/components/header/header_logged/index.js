@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Navbar, Column, Button, Dropdown } from 'rbx';
-import logoImage from '../../../assets/images/logo-white.png';
-import '../../../styles/header.scss';
 import UsersService from '../../../services/users';
 import { Redirect, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import logoImage from '../../../assets/images/logo-white.png';
+import '../../../styles/header.scss';
 
-function HeaderLogged(props) {
+const HeaderLogged = (props) => {
     const [redirectToHome, setRedirectToHome] = useState(false);
-    const [user, setUser] = useState(localStorage.getItem('user'));
 
     const handleClick = () => {
         (props.isOpen) ? props.setIsOpen(false) : props.setIsOpen(true);
@@ -20,7 +19,7 @@ function HeaderLogged(props) {
         setRedirectToHome(true);
     }
 
-    if (redirectToHome == true)
+    if (redirectToHome === true)
         return <Redirect to={{ pathname: "/" }} />
 
     return (
@@ -29,7 +28,7 @@ function HeaderLogged(props) {
                 <Column.Group>
                     <Column size="11" offset="1">
                         <Link to="/notes">
-                            <img src={logoImage} />
+                            <img src={logoImage} alt="logo" />
                         </Link>
                     </Column>
                 </Column.Group>
@@ -48,9 +47,7 @@ function HeaderLogged(props) {
                 <Navbar.Segment as="div" className="navbar-item navbar-start" align="start">
                     <Navbar.Item as="div">
                         <Button
-                            className="open-button"
-                            color="white"
-                            outlined
+                            className="open-button" color="white" outlined
                             onClick={() => handleClick()}>
                             <FontAwesomeIcon icon={faList} />
                         </Button>
@@ -61,7 +58,7 @@ function HeaderLogged(props) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button" color="white" outlined>
-                                    <span>{JSON.parse(user)['name']}</span>
+                                    <span>{JSON.parse(localStorage.getItem('user'))['name']}</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>
@@ -71,7 +68,9 @@ function HeaderLogged(props) {
                                     </Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item as="div">
-                                        <a onClick={e => logOut()}>LogOut</a>
+                                        <Button onClick={e => logOut()}>
+                                            LogOut
+                                        </Button>
                                     </Dropdown.Item>
                                 </Dropdown.Content>
                             </Dropdown.Menu>
@@ -80,7 +79,7 @@ function HeaderLogged(props) {
                 </Navbar.Segment>
             </Navbar.Menu>
         </Navbar>
-    )
+    );
 }
 
 export default HeaderLogged;
