@@ -3,7 +3,7 @@ JavaScript Notes is a responsive web application to creating notes using Customi
 
 Live demo: [JavaScript Notes](https://github.com/cesardoliveira/javascript-notes-app)<br />
 
-## Tools 
+# Tools 
 * Create-react-app
 * rbx Bulma UI Framework for React
 * Quill Rich Text Editor
