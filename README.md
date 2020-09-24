@@ -1,7 +1,7 @@
 # JavaScript Notes App
 JavaScript Notes is a responsive web application to creating notes using Customizable Rich-Text Editor and you can access your notes from anywhere. It was built in two parts, frontend using React and Bulma (CSS Framework) and backend using Node.js and MongoDB.
 
-Live demo: [JavaScript Notes](https://github.com/cesardoliveira/javascript-notes-app)<br />
+Live demo: [JavaScript Notes](https://javascript-notes-app-prd.herokuapp.com/)<br />
 
 # Tools 
 * Create-react-app
