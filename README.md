@@ -15,6 +15,14 @@ npm install
 ```
 This command installs a package, and any packages that it depends on.
 
+## Getting Started
+Before you start, in the project directory, make sure to create a file .env and set a variable like example below:
+
+```
+REACT_APP_BASE_API=http://localhost:3001
+```
+Check integration services: [`javascript-notes-api`](https://github.com/cesardoliveira/javascript-notes-api)
+
 ## Start App
 ```git
 npm start
@@ -25,5 +33,3 @@ Open [`http://localhost:3000`](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-Check integration services: [`javascript-notes-api`](https://github.com/cesardoliveira/javascript-notes-api)

@@ -23,6 +23,27 @@ const LoginForm = () => {
         }
     }
 
+    const handleKeyDown = async (evt) => {
+        if (evt.key === 'Enter') {
+            evt.preventDefault();
+            try {
+                if (email === "") {
+                    (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Email is required.');
+                    setError(true);
+                } else if (password === "") {
+                    (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Password is required.');
+                    setError(true);
+                } else {
+                    await UsersService.login({ email: email, password: password });
+                    setRedirectToNotes(true);
+                }
+            } catch (error) {
+                (error.response) ? setErrorMsg(error.response.data['error']) : setErrorMsg('Connection to endpoint API failed.');
+                setError(true);
+            }
+        }
+    }
+
     if (redirectToRegister) {
         return <Redirect to={{ pathname: "/register" }} />
     } else if (redirectToNotes) {
@@ -32,7 +53,7 @@ const LoginForm = () => {
     return (
         <Fragment>
             <Column.Group>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
                     <Column size={12}>
                         <Field>
                             <Label size="small">Email: </Label>
@@ -50,7 +71,7 @@ const LoginForm = () => {
                             <Control>
                                 <Column.Group breakpoint="mobile">
                                     <Column>
-                                        <Button 
+                                        <Button
                                             className="button is white has-text-custom-purple"
                                             onClick={e => setRedirectToRegister(true)}> Register or
                                         </Button>

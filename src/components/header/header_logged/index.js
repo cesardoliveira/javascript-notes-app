@@ -14,6 +14,10 @@ const HeaderLogged = (props) => {
         (props.isOpen) ? props.setIsOpen(false) : props.setIsOpen(true);
     }
 
+    const closeSideMenu = () => {
+        props.setIsOpen(false)
+    } 
+
     const logOut = async () => {
         await UsersService.logout();
         setRedirectToHome(true);
@@ -57,7 +61,9 @@ const HeaderLogged = (props) => {
                     <Navbar.Item as="div">
                         <Dropdown>
                             <Dropdown.Trigger>
-                                <Button className="button" color="white" outlined>
+                                <Button className="button" color="white" outlined
+                                    onClick={() => closeSideMenu()}
+                                >
                                     <span>{JSON.parse(localStorage.getItem('user'))['name']}</span>
                                 </Button>
                             </Dropdown.Trigger>
