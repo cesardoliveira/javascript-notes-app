@@ -54,7 +54,12 @@ const Notes = (props) => {
             return note._id === id;
         })
         setCurrentNote(note);
+        closeSideMenu();
     }
+
+    const closeSideMenu = () => {
+        props.setIsOpen(false);
+    } 
 
     useEffect(() => {
         fetchNotes();

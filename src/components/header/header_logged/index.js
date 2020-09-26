@@ -15,7 +15,7 @@ const HeaderLogged = (props) => {
     }
 
     const closeSideMenu = () => {
-        props.setIsOpen(false)
+        props.setIsOpen(false);
     } 
 
     const logOut = async () => {
