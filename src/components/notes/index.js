@@ -47,6 +47,7 @@ const Notes = (props) => {
     const deleteNote = async (note) => {
         await NotesService.delete(note._id);
         fetchNotes();
+        openSideMenu();
     }
 
     const selectNote = (id) => {
@@ -57,9 +58,13 @@ const Notes = (props) => {
         closeSideMenu();
     }
 
+    const openSideMenu = () => {
+        props.setIsOpen(true);
+    }
+
     const closeSideMenu = () => {
         props.setIsOpen(false);
-    } 
+    }
 
     useEffect(() => {
         fetchNotes();
