@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomeScreen from './screens/home';
-import RegisterScreen from './screens/auth/register';
-import LoginScreen from './screens/auth/login';
-import UsersScreen from './screens/users/edit';
-import NotesScreen from './screens/notes/index';
+import HomeScreen from './pages/home';
+import RegisterScreen from './pages/auth/register';
+import LoginScreen from './pages/auth/login';
+import UsersScreen from './pages/users/edit';
+import NotesScreen from './pages/notes/index';
 import PrivateRoute from './components/auth/private_route';
 import PublicRoute from './components/auth/public_route';
 
